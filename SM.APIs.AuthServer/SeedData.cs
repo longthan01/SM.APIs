@@ -17,9 +17,9 @@ namespace SM.APIs.AuthServer
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
-
                 var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
                 context.Database.Migrate();
+
                 if (!context.Clients.Any())
                 {
                     foreach (var client in Config.Clients)
@@ -43,6 +43,14 @@ namespace SM.APIs.AuthServer
                     foreach (var resource in Config.ApiResources)
                     {
                         context.ApiResources.Add(resource.ToEntity());
+                    }
+                    context.SaveChanges();
+                }
+                if (!context.ApiScopes.Any())
+                {
+                    foreach (var scope in Config.ApiScopes)
+                    {
+                        context.ApiScopes.Add(scope.ToEntity());
                     }
                     context.SaveChanges();
                 }

@@ -12,7 +12,8 @@ namespace SM.APIs.AuthServer
         public static IEnumerable<IdentityResource> IdentityResources =>
             new IdentityResource[]
             {
-                new IdentityResources.OpenId()
+                new IdentityResources.OpenId(),
+                new IdentityResource(name: "profile", userClaims: new []{"name", "email" }, displayName: "Profile data")
             };
 
 
@@ -23,12 +24,12 @@ namespace SM.APIs.AuthServer
                 new Client
                 {
                     ClientId = "webclient",
-                    ClientName = "Client Credentials Client",
+                    ClientName = "Web client with public client credentials",
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     ClientSecrets = { new Secret("secret".Sha256()) },
 
-                    AllowedScopes = { "full" }
+                    AllowedScopes = { "story.read", "story-category.read" }
                 },
 
                 // interactive client using code flow + pkce
@@ -44,7 +45,7 @@ namespace SM.APIs.AuthServer
                     PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile",}
+                    AllowedScopes = { "story.read", "story-category.read", }
                 },
             };
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -54,7 +55,7 @@ namespace SM.APIs.AuthServer
                 new ApiScope(name: "story.read",   displayName: "Reads stories."),
 
                 // customer API specific scopes
-                new ApiScope(name: "story_category.read",    displayName: "Reads story's category."),
+                new ApiScope(name: "story-category.read",    displayName: "Reads story's category."),
 
                 // shared scope
                 new ApiScope(name: "manage", displayName: "Provides administrative access to story and category data.")
@@ -65,12 +66,12 @@ namespace SM.APIs.AuthServer
              {
                  new ApiResource("story", "Story API")
                  {
-                     Scopes = { "story.read", "invoice.pay", "manage" }
+                     Scopes = { "story.read", "manage" }
                  },
 
-                 new ApiResource("story_category", "Story's category API")
+                 new ApiResource("story-category", "Story's category API")
                  {
-                     Scopes = { "story_category.read", "manage" }
+                     Scopes = { "story-category.read", "manage" }
                  }
              };
     }
