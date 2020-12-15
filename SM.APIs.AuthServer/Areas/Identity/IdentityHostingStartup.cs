@@ -17,7 +17,7 @@ namespace SM.APIs.AuthServer.Areas.Identity
             builder.ConfigureServices((context, services) =>
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(
+                    options.UseMySql(
                         context.Configuration.GetConnectionString("ApplicationDbContextConnection")));
 
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

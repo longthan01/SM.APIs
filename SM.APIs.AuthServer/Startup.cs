@@ -27,26 +27,11 @@ namespace SM.APIs.AuthServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // uncomment, if you want to add an MVC-based UI
-            //services.AddControllersWithViews();
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("ApplicationDbContextConnection")));
-
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
-
             string connectionString = Configuration.GetConnectionString("DefaultConnectionString");
             var migrationsAssembly = typeof(SeedData).GetTypeInfo().Assembly.GetName().Name;
 
             var builder = services.AddIdentityServer(options =>
             {
-                //options.Events.RaiseErrorEvents = true;
-                //options.Events.RaiseInformationEvents = true;
-                //options.Events.RaiseFailureEvents = true;
-                //options.Events.RaiseSuccessEvents = true;
-
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
             })
@@ -54,14 +39,14 @@ namespace SM.APIs.AuthServer
             {
                 options.ConfigureDbContext = builder =>
                 {
-                    builder.UseSqlServer(connectionString, sql =>
+                    builder.UseMySql(connectionString, sql =>
                     sql.MigrationsAssembly(migrationsAssembly));
                 };
             })// this adds the operational data from DB (codes, tokens, consents)
             .AddOperationalStore(options =>
             {
                 options.ConfigureDbContext = b =>
-                    b.UseSqlServer(connectionString,
+                    b.UseMySql(connectionString,
                         sql => sql.MigrationsAssembly(migrationsAssembly));
 
                 // this enables automatic token cleanup. this is optional.
@@ -70,11 +55,7 @@ namespace SM.APIs.AuthServer
             .AddAspNetIdentity<IdentityUser>();
 
             // not recommended for production - you need to store your key material somewhere secure
-
             builder.AddDeveloperSigningCredential();
-            //services.AddAuthentication();
-            //services.AddAuthorization();
-            //services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app)
@@ -84,7 +65,7 @@ namespace SM.APIs.AuthServer
                 app.UseDeveloperExceptionPage();
             }
 
-            //SeedData.EnsureSeedData(app);
+            SeedData.EnsureSeedData(app);
 
             // uncomment if you want to add MVC
             app.UseStaticFiles();
