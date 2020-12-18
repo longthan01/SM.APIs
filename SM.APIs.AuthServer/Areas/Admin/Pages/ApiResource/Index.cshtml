@@ -1,0 +1,22 @@
+﻿@page
+@model SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource.IndexModel
+@{
+}
+<h1>Manage API resources</h1>
+@foreach (var item in Model.ApiResources)
+{
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayFor(modelItem => item.Name)
+        </dt>
+        <dt class="col-sm-3">
+            @Html.DisplayFor(modelItem => item.DisplayName)
+        </dt>
+        <dt class="col-sm-6">
+            @Html.DisplayText(string.Join(",", item.Scopes))
+        </dt>
+    </dl>
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
