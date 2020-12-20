@@ -1,0 +1,25 @@
+﻿.round {
+    border: 1px solid black;
+    border-radius: 25px;
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 2px;
+    background-color: #f2f2f2;
+}
+
+    .round .plus {
+        width: 10px;
+        float: right;
+        margin-left: 5px;
+        color: #2b2828;
+    }
+
+.add-new {
+    margin-bottom: 10px;
+}
+@media(min-width: 767px)
+{
+    .add-new {
+        float: right;
+    }
+}

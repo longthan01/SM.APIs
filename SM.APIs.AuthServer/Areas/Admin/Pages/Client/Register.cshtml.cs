@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SM.APIs.AuthServer.Areas.Client.Pages
+namespace SM.APIs.AuthServer.Areas.Client.Pages.Client
 {
-    [Authorize]
     public class RegisterModel : PageModel
     {
         public class InputModel

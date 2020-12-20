@@ -27,5 +27,10 @@
   <ItemGroup>
     <Folder Include="Data\Migrations\IdentityServer\ConfigurationDb\" />
     <Folder Include="Data\Migrations\IdentityServer\PersistedGrantDb\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Implementation\" />
+    <Folder Include="Areas\Admin\Pages\Client\" />
+    <Folder Include="wwwroot\css\admin\" />
+    <Folder Include="Areas\Admin\Pages\ApiResource\Models\" />
   </ItemGroup>
 </Project>

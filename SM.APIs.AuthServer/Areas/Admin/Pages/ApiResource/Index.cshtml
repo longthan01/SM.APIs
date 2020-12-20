@@ -1,22 +1,43 @@
 ﻿@page
 @model SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource.IndexModel
 @{
+    var apiResources = Model.ApiResources.ToList();
+    ViewData["ActivePage"] = ManageNavPages.ApiResource;
 }
 <h1>Manage API resources</h1>
-@foreach (var item in Model.ApiResources)
-{
-    <dl class="row">
-        <dt class="col-sm-3">
-            @Html.DisplayFor(modelItem => item.Name)
-        </dt>
-        <dt class="col-sm-3">
-            @Html.DisplayFor(modelItem => item.DisplayName)
-        </dt>
-        <dt class="col-sm-6">
-            @Html.DisplayText(string.Join(",", item.Scopes))
-        </dt>
-    </dl>
-}
+<div>
+    <a class="add-new" asp-page="./Add">Add new</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Display Name</th>
+            <th scope="col">Scopes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i=0; i<apiResources.Count; i++)
+        {
+            var item = apiResources[i];
+        <tr>
+            <th scope="row">@(i+1)</th>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>@Html.DisplayFor(modelItem => item.DisplayName)</td>
+            <td>
+                @foreach (string scope in item.Scopes)
+                {
+                    <div class="round">
+                        <span>@scope</span>
+                    </div>
+                }
+         </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

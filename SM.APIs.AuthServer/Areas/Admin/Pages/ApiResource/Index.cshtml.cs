@@ -6,28 +6,26 @@ using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource.Models;
 using SM.APIs.AuthServer.Data;
+using SM.APIs.AuthServer.Services;
 
 namespace SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource
 {
     public class IndexModel : PageModel
     {
-        public class ApiResourceVM
-        {
-            public string Name { get; set; }
-            public string DisplayName { get; set; }
-            public IEnumerable<string> Scopes { get; set; }
-        }
         public IEnumerable<ApiResourceVM> ApiResources { get; set; }
         private ConfigurationDbContext DbContext { get; }
+        public IApiResourceService ApiResourceService { get; }
 
-        public IndexModel(ConfigurationDbContext dbContext)
+        public IndexModel(IApiResourceService apiResourceService)
         {
-            this.DbContext = dbContext;
+            ApiResourceService = apiResourceService;
         }
+
         public async Task<IActionResult> OnGetAsync()
         {
-            ApiResources = DbContext.ApiResources.Include(a => a.Scopes)
+            ApiResources = (await ApiResourceService.GetListAsync())
                 .Select(x => new ApiResourceVM()
                 {
                     Scopes = x.Scopes.Select(y => y.Scope),

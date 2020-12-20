@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SM.APIs.AuthServer.Data;
 using Microsoft.AspNetCore.Identity;
+using SM.APIs.AuthServer.Services;
+using SM.APIs.AuthServer.Services.Implementation;
 
 namespace SM.APIs.AuthServer
 {
@@ -56,6 +58,18 @@ namespace SM.APIs.AuthServer
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
+
+            // configure cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CORS", builder => {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                });
+            });
+            services.AddScoped<IApiResourceService, ApiResourceService>();
+            services.AddScoped<IApiScopeService, ApiScopeService>();
         }
 
         public void Configure(IApplicationBuilder app)
