@@ -6,7 +6,7 @@ using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource.Models;
+using SM.APIs.AuthServer.Areas.Admin.Pages.Models;
 using SM.APIs.AuthServer.Data;
 using SM.APIs.AuthServer.Services;
 

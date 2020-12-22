@@ -9,8 +9,10 @@ namespace SM.APIs.AuthServer.Areas.Admin.Pages
     public static class ManageNavPages
     {
         public static string ApiResource => "ApiResource";
+        public static string ApiScope => "ApiScope";
 
         public static string ApiResourceNavlass(ViewContext viewContext) => PageNavClass(viewContext, ApiResource);
+        public static string ApiScopeNavlass(ViewContext viewContext) => PageNavClass(viewContext, ApiScope);
 
         private static string PageNavClass(ViewContext viewContext, string page)
         {

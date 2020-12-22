@@ -1,6 +1,7 @@
 ﻿@page
 @model SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource.AddModel
 @{
+    ViewData["ActivePage"] = ManageNavPages.ApiResource;
     var scopes = Model.ApiScopes.Select(x => new SelectListItem() { Text = x.DisplayName, Value = x.Name });
 }
 <div class="row">

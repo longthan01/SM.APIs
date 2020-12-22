@@ -6,6 +6,7 @@
   
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'SelfHost' " />
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="IdentityServer4" Version="4.1.1" />
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.1" />
     <PackageReference Include="identityserver4.entityframework" Version="4.1.1" />
@@ -31,6 +32,9 @@
     <Folder Include="Services\Implementation\" />
     <Folder Include="Areas\Admin\Pages\Client\" />
     <Folder Include="wwwroot\css\admin\" />
-    <Folder Include="Areas\Admin\Pages\ApiResource\Models\" />
+    <Folder Include="Areas\Admin\Pages\Models\" />
+    <Folder Include="Areas\Admin\Pages\ApiScope\" />
+    <Folder Include="Mapper\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
 </Project>

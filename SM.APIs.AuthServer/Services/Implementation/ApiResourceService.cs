@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Entities;
 using Microsoft.EntityFrameworkCore;
-using SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource.Models;
+using SM.APIs.AuthServer.Areas.Admin.Pages.Models;
 
 namespace SM.APIs.AuthServer.Services.Implementation
 {

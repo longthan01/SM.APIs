@@ -13,6 +13,8 @@ using SM.APIs.AuthServer.Data;
 using Microsoft.AspNetCore.Identity;
 using SM.APIs.AuthServer.Services;
 using SM.APIs.AuthServer.Services.Implementation;
+using AutoMapper;
+using SM.APIs.AuthServer.Mapper;
 
 namespace SM.APIs.AuthServer
 {
@@ -68,6 +70,14 @@ namespace SM.APIs.AuthServer
                     builder.AllowAnyMethod();
                 });
             });
+
+            // config auto mapper
+            var mapperConfig = new MapperConfiguration(cfg => {
+                cfg.AddProfile(new MappingProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddScoped<IApiResourceService, ApiResourceService>();
             services.AddScoped<IApiScopeService, ApiScopeService>();
         }

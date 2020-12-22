@@ -1,0 +1,34 @@
+﻿@page
+@model SM.APIs.AuthServer.Areas.Admin.Pages.ApiScope.EditModel
+@{
+    // set this to make the link bold when the page is navigated
+    ViewData["ActivePage"] = ManageNavPages.ApiScope;
+}
+<div class="row">
+    <div class="col-md-12">
+        <section>
+            <form id="account" method="post">
+                <h4>Edit API Scope.</h4>
+                <hr />
+                <input type="hidden" asp-for="ApiScope.Id" />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ApiScope.Name"></label>
+                    <input asp-for="ApiScope.Name" autocomplete="off" class="form-control" />
+                    <span asp-validation-for="ApiScope.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApiScope.DisplayName"></label>
+                    <input asp-for="ApiScope.DisplayName" autocomplete="off" class="form-control" />
+                    <span asp-validation-for="ApiScope.DisplayName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource.Models;
+using SM.APIs.AuthServer.Areas.Admin.Pages.Models;
 using SM.APIs.AuthServer.Services;
 
 namespace SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource

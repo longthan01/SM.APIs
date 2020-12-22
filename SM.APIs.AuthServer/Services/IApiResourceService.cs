@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using IdentityServer4.EntityFramework.Entities;
-using SM.APIs.AuthServer.Areas.Admin.Pages.ApiResource.Models;
+using SM.APIs.AuthServer.Areas.Admin.Pages.Models;
 
 namespace SM.APIs.AuthServer.Services
 {
