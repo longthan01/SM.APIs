@@ -88,7 +88,11 @@ namespace SM.APIs.AuthServer
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
             SeedData.EnsureSeedData(app);
 
             // uncomment if you want to add MVC
